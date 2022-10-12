@@ -10,22 +10,16 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+# BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure--@evii#!zgrggen))n_zd=50@r16insh8!e_ey=0a^^bw52udj'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -38,13 +32,16 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'core',
     'prosno',
+    'playground',
     'debug_toolbar',
     'django_filters',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -84,23 +81,7 @@ WSGI_APPLICATION = 'prosnokorta2.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'prosnokorta3',
-        'HOST': 'localhost',
-        'USER': 'root',
-        'PASSWORD': '',
-        # 'NAME': 'freedb_prosnokorta4',
-        # 'HOST': 'sql.freedb.tech',
-        # 'USER': 'freedb_abulkuddus343',
-        # 'PASSWORD': 'S2e6@aK$Rt$x3Du',
-        # 'OPTIONS': {
-        #     'init_command': 'SET default_storage_engine=INNODB',
-        #     # 'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
-        # }
-    }
-}
+
 
 
 # Password validation
@@ -139,7 +120,37 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGGING = {
+    'version' : 1,
+    'disable_existing_loggers' : False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler'
+        },
+        'file': {
+            'class': 'logging.FileHandler',
+            'filename': 'general.log',
+            # 'formatter': 'verbose'
+        }
+
+    },
+    'loggers': {
+        '': {
+            'handlers': ['console', 'file'],
+            'level': os.environ.get('DJANGO_LOG_LEVEL', 'INFO')
+        }
+    },
+    'formetters': {
+        'verbose': {
+            'format': '{asctime} ({levelname}) - {name} - {message}',
+            'style' : '{' #str.format()
+        }
+    }
+}

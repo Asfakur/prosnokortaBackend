@@ -10,6 +10,10 @@ mysqlclient = "*"
 djangorestframework = "*"
 drf-nested-routers = "*"
 django-filter = "*"
+whitenoise = "*"
+requests = "*"
+gunicorn = "*"
+waitress = "*"
 
 [dev-packages]
 autopep8 = "*"
