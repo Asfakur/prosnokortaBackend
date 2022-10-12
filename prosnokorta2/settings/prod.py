@@ -7,3 +7,17 @@ DEBUG = False
 SECRET_KEY = os.environ['SECRET_KEY']
 
 ALLOWED_HOSTS = ['prosnokorta.herokuapp.com']
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'freedb_prosnokorta4',
+        'HOST': 'sql.freedb.tech',
+        'USER': 'freedb_abulkuddus343',
+        'PASSWORD': 'S2e6@aK$Rt$x3Du',
+        # 'OPTIONS': {
+        #     'init_command': 'SET default_storage_engine=INNODB',
+        #     # 'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
+        # }
+    }
+}
