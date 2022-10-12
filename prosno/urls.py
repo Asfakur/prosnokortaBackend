@@ -1,0 +1,22 @@
+from cgitb import lookup
+from email.mime import base
+from django.urls.conf import include
+from django.urls import path
+from . import views
+from rest_framework_nested import routers
+
+
+# this is parent router
+router = routers.DefaultRouter()
+
+router.register('questions', views.QuestionViewSet, basename='questions')
+
+# child router
+question_router = routers.NestedDefaultRouter(router, 'questions', lookup='question')
+question_router.register('reviews', views.ReviewViewSet, basename='product-reviews')
+
+urlpatterns = router.urls + question_router.urls
+
+# urlpatterns = [
+#     path('', include(router.urls)),
+# ]
