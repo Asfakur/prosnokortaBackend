@@ -21,6 +21,7 @@ DATABASES = {
         'HOST': 'mysql-91149-0.cloudclusters.net',
         'USER': 'sakdfj45934jfjs',
         'PASSWORD': 'skdjf*&*$Wskdjf',
+        'PORT': '17577',
 
         # 'OPTIONS': {
         #     'init_command': 'SET default_storage_engine=INNODB',
