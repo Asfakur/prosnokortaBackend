@@ -31,15 +31,17 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_filters',
+    'corsheaders',
     'rest_framework',
     'core',
     'prosno',
     'playground',
     'debug_toolbar',
-    'django_filters',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -55,6 +57,11 @@ INTERNAL_IPS = [
     # ...
     "127.0.0.1",
     # ...
+]
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
 ]
 
 ROOT_URLCONF = 'prosnokorta2.urls'
@@ -80,8 +87,6 @@ WSGI_APPLICATION = 'prosnokorta2.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
-
-
 
 
 # Password validation
@@ -128,8 +133,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGGING = {
-    'version' : 1,
-    'disable_existing_loggers' : False,
+    'version': 1,
+    'disable_existing_loggers': False,
     'handlers': {
         'console': {
             'class': 'logging.StreamHandler'
@@ -150,7 +155,7 @@ LOGGING = {
     'formetters': {
         'verbose': {
             'format': '{asctime} ({levelname}) - {name} - {message}',
-            'style' : '{' #str.format()
+            'style': '{'  # str.format()
         }
     }
 }
