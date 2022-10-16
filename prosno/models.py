@@ -92,11 +92,14 @@ class Set(models.Model):
     total_marks = models.PositiveIntegerField()
     duration = models.PositiveIntegerField()
     author = models.ForeignKey(Author, on_delete=models.PROTECT)
-    date = models.DateField(auto_now_add=True)
+    created = models.DateField(auto_now_add=True)
+    start_at = models.DateTimeField(auto_now_add=False)
 
 class QuestionInExam(models.Model):
     question = models.ForeignKey(Question, on_delete=models.PROTECT)
     set = models.ForeignKey(Set, on_delete=models.PROTECT)
+    class Meta:
+        unique_together = ["question", "set"]
 
 class Review(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE)

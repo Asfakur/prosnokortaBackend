@@ -10,6 +10,9 @@ from rest_framework_nested import routers
 router = routers.DefaultRouter()
 
 router.register('questions', views.QuestionViewSet, basename='questions')
+router.register('sets', views.SetViewSet, basename='sets')
+router.register('questioninexam', views.QuestionInExamViewSet, basename='questioninexam')
+router.register('questioninexamreadonly', views.QuestionInExamViewSetReadOnly, basename='questioninexamreadonly')
 
 # child router
 question_router = routers.NestedDefaultRouter(router, 'questions', lookup='question')
