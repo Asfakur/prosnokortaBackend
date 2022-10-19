@@ -3,7 +3,7 @@ from dataclasses import fields
 from itertools import product
 from pyexpat import model
 from rest_framework import serializers
-from prosno.models import Course, Question, QuestionInExam, Review, Set, User
+from prosno.models import Chapter, Class, Course, Exam, Question, QuestionInExam, Review, Set, User
 
 
 class QuestionSerializer(serializers.ModelSerializer):
@@ -65,3 +65,22 @@ class QuestionInExamSerializerReadOnly(serializers.ModelSerializer):
         fields = ['id', 'set', 'question']
         # exclude = []
         
+class ClassSerialzer(serializers.ModelSerializer):
+    class Meta:
+        model = Class
+        exclude = []
+
+class CourseSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Course
+        exclude = []
+
+class ChapterSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Chapter
+        exclude = []
+
+class ExamSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Exam
+        exclude = []

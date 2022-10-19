@@ -17,7 +17,7 @@ DATABASES = {
         # 'USER': 'freedb_abulkuddus343',
         # 'PASSWORD': 'S2e6@aK$Rt$x3Du',
 
-        'NAME': 'prosnokorta2',
+        'NAME': 'prosnokorta',
         'HOST': 'mysql-91149-0.cloudclusters.net',
         'USER': 'sakdfj45934jfjs',
         'PASSWORD': 'skdjf*&*$Wskdjf',

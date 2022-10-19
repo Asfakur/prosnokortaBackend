@@ -61,6 +61,7 @@ class Author(models.Model):
     #     return self.user.name
 
 
+
 class Question(models.Model):
     description = models.TextField(null=True)
     first_option = models.CharField(max_length=255)
@@ -88,6 +89,7 @@ class Question(models.Model):
 
 
 class Set(models.Model):
+    title = models.CharField(max_length=length_255)
     total_questions = models.PositiveIntegerField()#check the maximum value
     total_marks = models.PositiveIntegerField()
     duration = models.PositiveIntegerField()
@@ -106,3 +108,14 @@ class Review(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     description = models.TextField()
     date = models.DateField(auto_now_add=True)
+
+class Exam(models.Model):
+    student = models.ForeignKey(User, on_delete=models.CASCADE)
+    set = models.ForeignKey(Set, on_delete=models.CASCADE)
+    author = models.ForeignKey(Author, on_delete=models.CASCADE)
+    corrected = models.PositiveSmallIntegerField(null=True)
+    score = models.PositiveBigIntegerField(null=True)
+    status = models.CharField(max_length=56, default='requested')
+
+    class Meta:
+        unique_together = ["student", "set"]

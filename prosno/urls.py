@@ -13,6 +13,10 @@ router.register('questions', views.QuestionViewSet, basename='questions')
 router.register('sets', views.SetViewSet, basename='sets')
 router.register('questioninexam', views.QuestionInExamViewSet, basename='questioninexam')
 router.register('questioninexamreadonly', views.QuestionInExamViewSetReadOnly, basename='questioninexamreadonly')
+router.register('class', views.ClassViewSet, basename='class')
+router.register('course', views.CourseViewSet, basename='course')
+router.register('chapters', views.ChapterViewSet, basename='chapters')
+router.register('exams', views.ExamViewSet, basename='exams')
 
 # child router
 question_router = routers.NestedDefaultRouter(router, 'questions', lookup='question')

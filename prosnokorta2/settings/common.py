@@ -34,10 +34,10 @@ INSTALLED_APPS = [
     'django_filters',
     'corsheaders',
     'rest_framework',
-    'core',
     'prosno',
     'playground',
     'debug_toolbar',
+    'core',
 ]
 
 MIDDLEWARE = [
@@ -61,6 +61,7 @@ INTERNAL_IPS = [
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
+    "http://localhost:3001",
     "http://127.0.0.1:3000",
 ]
 

@@ -1,6 +1,7 @@
-from . models import Question, QuestionInExam, Review, Set
+
+from . models import Chapter, Course, Exam, Question, QuestionInExam, Review, Set, Class
 from rest_framework.response import Response
-from .serializers import QuestionInExamSerializer, QuestionInExamSerializerReadOnly, QuestionSerializer, ReveiwSerializer, SetSerializer
+from .serializers import ChapterSerializer, ClassSerialzer, CourseSerializer, ExamSerializer, QuestionInExamSerializer, QuestionInExamSerializerReadOnly, QuestionSerializer, ReveiwSerializer, SetSerializer
 from rest_framework import status
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from rest_framework.viewsets import ModelViewSet, ReadOnlyModelViewSet
@@ -74,3 +75,42 @@ class ReviewViewSet(ModelViewSet):
 
     def get_serializer_context(self):
         return {'question_id': self.kwargs['question_pk']}
+
+
+class ClassViewSet(ModelViewSet):
+    queryset = Class.objects.all()
+    serializer_class = ClassSerialzer
+    
+    def get_serializer_context(self):
+        return {'request': self.request}
+
+class CourseViewSet(ModelViewSet):
+    queryset = Course.objects.all()
+    serializer_class = CourseSerializer
+
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['class_id']
+
+    def get_serializer_context(self):
+        return {'request': self.request}
+
+
+class ChapterViewSet(ModelViewSet):
+    queryset = Chapter.objects.all()
+    serializer_class = ChapterSerializer
+
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['course']
+
+    def get_serializer_context(self):
+        return {'request': self.request}
+
+class ExamViewSet(ModelViewSet):
+    queryset = Exam.objects.all()
+    serializer_class = ExamSerializer
+
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['student', 'author']
+
+    def get_serializer_context(self):
+        return {'request': self.request}
