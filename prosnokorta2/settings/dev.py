@@ -11,16 +11,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         
-        # 'NAME': 'prosnokorta',
-        # 'HOST': 'localhost',
-        # 'USER': 'root',
-        # 'PASSWORD': '',
-
-        'NAME': 'prosnokorta',
-        'HOST': 'mysql-91149-0.cloudclusters.net',
-        'USER': 'sakdfj45934jfjs',
-        'PASSWORD': 'skdjf*&*$Wskdjf',
-        'PORT': '17577',
+        'NAME': 'prosnokortap',
+        'HOST': 'localhost',
+        'USER': 'root',
+        'PASSWORD': '',
 
         # 'OPTIONS': {
         #     'init_command': 'SET default_storage_engine=INNODB',

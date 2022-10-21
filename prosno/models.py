@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 
 length_50 = 50
 length_100 = 100
@@ -29,38 +30,11 @@ class Chapter(models.Model):
     def __str__(self) -> str:
         return self.title
 
-class User(models.Model):
-    TYPE_STUDENT = 'S'
-    TYPE_TEACHER = 'T'
-    TYPE_ADMIN = 'A'
-
-    TYPE_CHOICES = [
-        (TYPE_STUDENT, 'Student'),
-        (TYPE_TEACHER, 'Teacher'),
-        (TYPE_ADMIN, 'Admin')
-    ]
-
-    name = models.CharField(max_length=length_100)
+class Profile(models.Model):
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,primary_key=True )
     age = models.SmallIntegerField()
-    email = models.EmailField(max_length=length_255)
-    password = models.CharField(max_length=max_lenght_1000)
     phone = models.CharField(max_length=length_50)
-    type = models.CharField(max_length=1, choices=TYPE_CHOICES)
     rating = models.PositiveIntegerField(default=0)
-
-    def __str__(self) -> str:
-        return self.name
-
-# https://docs.djangoproject.com/en/4.1/topics/db/examples/one_to_one/
-class Author(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
-    total_question = models.PositiveIntegerField(default=0)
-    points = models.PositiveIntegerField(default=0)
-
-    # def __str__(self) -> str:
-    #     return self.user.name
-
-
 
 class Question(models.Model):
     description = models.TextField(null=True)
@@ -70,7 +44,7 @@ class Question(models.Model):
     fourth_option = models.CharField(max_length=255)
     answer = models.PositiveSmallIntegerField()
     explanation = models.TextField()
-    author = models.ForeignKey(Author, on_delete=models.CASCADE, null=True)
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     class_no = models.ForeignKey(Class, on_delete=models.PROTECT, null=True)
     course = models.ForeignKey(Course, on_delete=models.PROTECT, null=True)
     chapter = models.ForeignKey(Chapter, on_delete=models.PROTECT, null=True)
@@ -93,7 +67,7 @@ class Set(models.Model):
     total_questions = models.PositiveIntegerField()#check the maximum value
     total_marks = models.PositiveIntegerField()
     duration = models.PositiveIntegerField()
-    author = models.ForeignKey(Author, on_delete=models.PROTECT)
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     created = models.DateField(auto_now_add=True)
     start_at = models.DateTimeField(auto_now_add=False)
 
@@ -105,14 +79,14 @@ class QuestionInExam(models.Model):
 
 class Review(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     description = models.TextField()
     date = models.DateField(auto_now_add=True)
 
 class Exam(models.Model):
-    student = models.ForeignKey(User, on_delete=models.CASCADE)
+    student = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='student')
     set = models.ForeignKey(Set, on_delete=models.CASCADE)
-    author = models.ForeignKey(Author, on_delete=models.CASCADE)
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     corrected = models.PositiveSmallIntegerField(null=True)
     score = models.PositiveBigIntegerField(null=True)
     status = models.CharField(max_length=56, default='requested')

@@ -1,9 +1,6 @@
 
-from dataclasses import fields
-from itertools import product
-from pyexpat import model
 from rest_framework import serializers
-from prosno.models import Chapter, Class, Course, Exam, Question, QuestionInExam, Review, Set, User
+from prosno.models import Chapter, Class, Course, Exam, Question, QuestionInExam, Review, Set, Profile
 
 
 class QuestionSerializer(serializers.ModelSerializer):
@@ -28,18 +25,18 @@ class QuestionSerializerPost(serializers.ModelSerializer):
         model = Question
         exclude = ['points']
 
-class UserSerializer(serializers.ModelSerializer):
+class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
-        model = User
-        fields = ['name', 'email']
+        model = Profile
+        exclude = []
 
 class ReveiwSerializer(serializers.ModelSerializer):
 
-    user = UserSerializer()
+    profile = ProfileSerializer()
 
     class Meta:
         model = Review
-        fields = ['id', 'description', 'date', 'user']
+        fields = ['id', 'description', 'date', 'profile']
 
     
     def create(self, validated_data):
