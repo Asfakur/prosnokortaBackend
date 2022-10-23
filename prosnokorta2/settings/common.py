@@ -67,6 +67,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:3001",
     "http://127.0.0.1:3000",
     "https://prosnokorta.netlify.app",
+    "https://prosnokorta.web.app"
 ]
 
 ROOT_URLCONF = 'prosnokorta2.urls'

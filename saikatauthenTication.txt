@@ -16,3 +16,17 @@ for login---- http://127.0.0.1:8000/auth/jwt/create/
 
 get the current user---
 http://127.0.0.1:8000/auth/users/me/
+
+
+"for posting a new user": "/auth/users/"
+"for login": "/auth/jwt/create/"
+"get the current user": "/auth/users/me/"
+
+"questions": "/prosno/questions/",
+"sets": "/prosno/sets/",
+"questioninexam": "/prosno/questioninexam/",
+"questioninexamreadonly": "/prosno/questioninexamreadonly/",
+"class": "/prosno/class/",
+"course": "/prosno/course/",
+"chapters": "/prosno/chapters/",
+"exams": "/prosno/exams/"
