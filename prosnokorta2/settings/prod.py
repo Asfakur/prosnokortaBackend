@@ -7,7 +7,7 @@ DEBUG = False
 SECRET_KEY = os.environ['SECRET_KEY']
 
 # ALLOWED_HOSTS = ['prosnokorta.herokuapp.com']
-ALLOWED_HOSTS = ['web-production-fb95.up.railway.app']
+ALLOWED_HOSTS = ['prosnokorta.onrender.com']
 
 DATABASES = {
     'default': {
