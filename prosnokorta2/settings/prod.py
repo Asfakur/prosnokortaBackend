@@ -7,7 +7,8 @@ DEBUG = False
 SECRET_KEY = os.environ['SECRET_KEY']
 
 # ALLOWED_HOSTS = ['prosnokorta.herokuapp.com']
-ALLOWED_HOSTS = ['prosnokorta.onrender.com']
+ALLOWED_HOSTS = ['prosnokorta.onrender.com', 'https://prosnokorta.onrender.com', '*']
+
 
 DATABASES = {
     'default': {
