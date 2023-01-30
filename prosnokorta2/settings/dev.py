@@ -11,10 +11,6 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         
-        # 'NAME': 'prosnokortap',
-        # 'HOST': 'localhost',
-        # 'USER': 'root',
-        # 'PASSWORD': '',
         # 'OPTIONS': {
         #     'init_command': 'SET default_storage_engine=INNODB',
         #     # 'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"

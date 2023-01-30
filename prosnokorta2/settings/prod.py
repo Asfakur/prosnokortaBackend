@@ -12,8 +12,7 @@ ALLOWED_HOSTS = ['web-production-fb95.up.railway.app']
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-
-
+        
         'NAME': os.environ['DATABASE_NAME'],
         'HOST': os.environ['DATABASE_HOST'],
         'USER': os.environ['DATABASE_USER'],
